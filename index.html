@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Umair - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/jpeg" href="umair.jpg">
+    <style>
+        :root {
+            --bg-color: #f4f6f8;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --header-bg: #0d47a1;
+            --accent-color: #0d47a1;
+            --skills-bg: #e3f2fd;
+            --meta-color: #777;
+        }
+
+        .dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --header-bg: #0d47a1;
+            --accent-color: #90caf9;
+            --skills-bg: #263238;
+            --meta-color: #aaaaaa;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            max-height: 210px;
+        }
+
+        .header-profile {
+            margin-top: 1rem;
+            position: relative;
+            top: 115px;
+        }
+
+        header {
+            padding: 1rem;
+        }
+
+        .header-profile {
+            margin-top: 1rem;
+            position: static;
+            /* or relative without 'top' */
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 2rem 1rem;
+        }
+
+        h2 {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 0.6rem;
+            color: var(--accent-color);
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .job,
+        .project {
+            background: var(--card-bg);
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .job:hover,
+        .project:hover {
+            background-color: rgba(13, 71, 161, 0.05);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 6px 16px rgba(13, 71, 161, 0.2);
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            cursor: pointer;
+        }
+
+        .skills-grid span {
+            background: var(--skills-bg);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .skills-grid span:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 2rem;
+            top: 1.2rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .dark-mode .toggle-btn i {
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Muhammad Umair</h1>
+            <p><i class="fas fa-map-marker-alt"></i> Islamabad, Pakistan | <i class="fas fa-phone-alt"></i> +92 303
+                5265817 | <i class="fas fa-envelope"></i> malikumair112233@gmail.com</p>
+            <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/malik-umair-webdeveloper"
+                    target="_blank" style="color:#fff; text-decoration:underline;">LinkedIn</a></p>
+        </div>
+        <div class="header-profile">
+            <img src="umair.jpg" alt="Profile" class="profile-pic" />
+        </div>
+        <button class="toggle-btn" onclick="toggleDarkMode()">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </header>
+    <div class="container">
+        <section class="section">
+            <h2><i class="fas fa-tools" style="margin-right: 8px;"></i>Technical Skills</h2>
+            <div class="skills-grid" id="skills"></div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-graduation-cap" style="margin-right: 8px;"></i>Education</h2>
+            <p><strong>Bachelor of Science in Software Engineering</strong><br />
+                Comsats Institute, Pakistan | 2017
+            </p>
+        </section>
+        <section class="section">
+            <h2><i class="fas fa-briefcase" style="margin-right: 8px;"></i>Professional Experience</h2>
+            <div id="experience"></div>
+        </section>
+        <section class="section">
+            <h2><i class="fas fa-project-diagram" style="margin-right: 8px;"></i>Projects</h2>
+            <div id="projects"></div>
+        </section>
+    </div>
+    <script>
+        const skills = [
+            "Core Java", "Multithreading", "Collections", "Streams",
+            "Spring Boot", "Spring MVC", "Spring Security", "Data JPA", "Batch",
+            "Maven", "Gradle", "JUnit", "Mockito",
+            "Jenkins", "Docker", "Apache Tomcat",
+            "RabbitMQ", "Kafka", "Redis",
+            "IntelliJ IDEA", "Eclipse"
+        ];
+        const experiences = [
+            {
+                title: "Senior Java Developer",
+                company: "Datamatics Technology",
+                location: "Islamabad, Pakistan",
+                duration: "Dec 2024 - Present",
+                responsibilities: [
+                    "Led 5-member team for HRMS portal using Spring Boot",
+                    "Handled 500+ concurrent REST API requests with OAuth2",
+                    "Reduced build times by 40% via Maven + Jenkins CI/CD",
+                    "Improved throughput 35% with SQL/JVM tuning",
+                    "Integrated Redis caching reducing DB load by 45%"
+                ]
+            },
+            {
+                title: "Senior Java Developer",
+                company: "Upwork Global Inc.",
+                location: "Remote",
+                duration: "Dec 2023 - Dec 2024",
+                responsibilities: [
+                    "Built backend for Nihad.io using Spring Boot + RabbitMQ",
+                    "Implemented Strategy pattern for multi-payment systems",
+                    "Reduced API response time from 1200ms to 550ms"
+                ]
+            },
+            {
+                title: "Senior Software Engineer",
+                company: "DiscreteLogix",
+                location: "Islamabad, Pakistan",
+                duration: "Aug 2021 - Dec 2023",
+                responsibilities: [
+                    "Refactored monolith to microservices using Spring Cloud",
+                    "Optimized Spring Batch jobs with JProfiler (60% faster)",
+                    "Used Factory pattern for report generation module"
+                ]
+            },
+            {
+                title: "Software Engineer",
+                company: "Crewlogix",
+                location: "Lahore, Pakistan",
+                duration: "Aug 2020 - Dec 2021",
+                responsibilities: [
+                    "Built 50+ APIs for fleet system using Spring Boot",
+                    "Containerized app using Docker for AWS ECS"
+                ]
+            },
+            {
+                title: "Software Engineer",
+                company: "Capnotch",
+                location: "Islamabad, Pakistan",
+                duration: "Jun 2018 - Jul 2020",
+                responsibilities: [
+                    "Enhanced eCommerce platform with Spring MVC",
+                    "Resolved concurrency bugs and improved pricing engine"
+                ]
+            }
+        ];
+
+        const projects = [
+            {
+                name: "Nihad.io Marketplace",
+                duration: "2023-2024",
+                stack: "Spring Boot, React, Redis, RabbitMQ",
+                details: [
+                    "Built APIs handling $500K+ transactions/month",
+                    "Integrated JWT + OAuth2 security and Stripe/PayPal"
+                ]
+            },
+            {
+                name: "PkgHealth – Parkinson Monitoring",
+                duration: "2022-2023",
+                stack: "Kafka, Spring Boot, AWS IoT Core",
+                details: [
+                    "Processed wearable data at 10K+ msgs/min",
+                    "Reduced latency 40% using batch optimization"
+                ]
+            },
+            {
+                name: "Magicyou.me – Real-Time Platform",
+                duration: "2023",
+                stack: "Spring Cloud, WebSockets, Redis",
+                details: [
+                    "Scaled WebSockets to 10K+ concurrent users",
+                    "Used Observer pattern + Redis Pub/Sub"
+                ]
+            },
+            {
+                name: "Ramana Learning Center",
+                duration: "2021",
+                stack: "Spring MVC, MySQL",
+                details: [
+                    "Created course management and reporting modules",
+                    "Improved performance via Redis + query tuning"
+                ]
+            },
+            {
+                name: "HRMS Portal",
+                duration: "2024-Present",
+                stack: "Angular, Spring Boot, Kubernetes",
+                details: [
+                    "Implemented JPA Auditing and Spring Cloud Gateway",
+                    "Reduced payroll time by 70% via job optimization"
+                ]
+            }
+        ];
+
+
+        function renderList(containerId, list, builderFn) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = list.map(builderFn).join('');
+        }
+
+        function skillBuilder(skill) {
+            return `<span>${skill}</span>`;
+        }
+
+        function experienceBuilder(exp) {
+            return `
+      <div class="job">
+        <h3>${exp.title} – ${exp.company}</h3>
+        <p class="meta">${exp.location} | ${exp.duration}</p>
+        <ul>
+          ${exp.responsibilities.map(task => `<li>${task}</li>`).join('')}
+        </ul>
+      </div>`;
+        }
+
+        function projectBuilder(project) {
+            return `
+    <div class="project">
+      <h3>${project.name}</h3>
+      <p class="meta">${project.duration} | ${project.stack}</p>
+      <ul>
+        ${project.details.map(detail => `<li>${detail}</li>`).join('')}
+      </ul>
+    </div>`;
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            icon.classList.toggle('fa-sun');
+            icon.classList.toggle('fa-moon');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Load theme from storage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon')?.classList.replace('fa-moon', 'fa-sun');
+            }
+
+            // Render content
+            renderList("skills", skills, skillBuilder);
+            renderList("experience", experiences, experienceBuilder);
+            renderList("projects", projects, projectBuilder);
+        });
+    </script>
+
+</body>
+
+</html>
