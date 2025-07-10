@@ -38,43 +38,37 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        header {
-            background-color: var(--header-bg);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            max-height: 210px;
-        }
+       header {
+  background-color: var(--header-bg);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  height: 250px;
+}
 
         .header-profile {
-            margin-top: 1rem;
-            position: relative;
-            top: 115px;
-        }
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
 
         header {
             padding: 1rem;
         }
 
-        .header-profile {
-            margin-top: 1rem;
-            position: static;
-            /* or relative without 'top' */
-        }
 
         .profile-pic {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
         .profile-pic:hover {
             transform: scale(1.05);
@@ -150,6 +144,39 @@
         .dark-mode .toggle-btn i {
             color: yellow;
         }
+
+        @media (max-width: 600px) {
+            .header{
+                max-height: 250px !important;
+            }
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .header-profile{
+    margin-top: 0px;
+  }
+
+  .header-content {
+    flex: 1 1 100%;
+  }
+
+  .toggle-btn {
+    top: 0.5rem;
+    right: 1rem;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  .container > .section:first-of-type {
+  margin-top: 4rem; /* adjust as needed */
+}
+}
+
     </style>
 </head>
 
