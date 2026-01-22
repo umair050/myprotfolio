@@ -1,0 +1,491 @@
+/**
+ * Professional Software Engineer Portfolio - Design System
+ * Dark Mode Optimized
+ */
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+    /* Primary Colors */
+    --primary-dark: #0a0e27;
+    --primary-darker: #050812;
+    --card-bg: #1a1f3a;
+    --card-hover: #252b4a;
+    
+    /* Accent Colors */
+    --accent-primary: #667eea;
+    --accent-secondary: #764ba2;
+    --accent-hover: #7c8ef5;
+    --accent-light: #9ba8ff;
+    
+    /* Text Colors */
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888888;
+    --text-inverse: #ffffff;
+    
+    /* Status Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+    
+    /* Border & Divider */
+    --border-color: #2a2f4a;
+    --divider: #1e2438;
+    
+    /* Typography */
+    --font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    --font-mono: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    
+    /* Font Sizes */
+    --font-xs: 0.75rem;
+    --font-sm: 0.875rem;
+    --font-base: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.25rem;
+    --font-2xl: 1.5rem;
+    --font-3xl: 1.875rem;
+    --font-4xl: 2.25rem;
+    --font-5xl: 3rem;
+    
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    
+    /* Line Heights */
+    --leading-tight: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.75;
+    --leading-loose: 2;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.5);
+    
+    /* Transitions */
+    --duration-fast: 0.15s;
+    --duration-normal: 0.3s;
+    --duration-slow: 0.5s;
+    --duration-slower: 0.8s;
+    
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Breakpoints */
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-semibold);
+    font-size: var(--font-base);
+    border: none;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-semibold);
+    font-size: var(--font-base);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    color: var(--text-primary);
+}
+
+.btn-icon:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: var(--text-inverse);
+    transform: scale(1.1);
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-primary);
+}
+
+.card-glass {
+    background: rgba(26, 31, 58, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+/* ============================================
+   INPUT FIELDS
+   ============================================ */
+.input {
+    width: 100%;
+    padding: 0.875rem var(--spacing-md);
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: var(--font-base);
+    font-family: var(--font-family);
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: var(--font-family);
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--card-hover);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: var(--radius-sm);
+    transition: width 1s var(--ease-smooth);
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ============================================
+   BADGES/TAGS
+   ============================================ */
+.badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    background: var(--card-hover);
+    color: var(--accent-primary);
+    border-radius: var(--radius-full);
+    font-size: var(--font-sm);
+    font-weight: var(--font-medium);
+    border: 1px solid var(--border-color);
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.badge:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    transform: scale(1.05);
+}
+
+/* ============================================
+   TOOLTIPS
+   ============================================ */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: var(--spacing-sm);
+    padding: 0.5rem 0.75rem;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-normal) var(--ease-smooth);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+/* ============================================
+   LOADING SPINNER
+   ============================================ */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--card-hover);
+    border-top-color: var(--accent-primary);
+    border-radius: var(--radius-full);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    margin: var(--spacing-xl) 0;
+    border: none;
+}
+
+.divider-vertical {
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--border-color), transparent);
+}
+
+/* ============================================
+   SPECIAL EFFECTS
+   ============================================ */
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glow {
+    box-shadow: var(--shadow-glow);
+}
+
+.glow-hover:hover {
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.7);
+}
+
+.glass {
+    background: rgba(26, 31, 58, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-gradient {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+@media (max-width: 768px) {
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.75rem 1.5rem;
+        font-size: var(--font-sm);
+    }
+    
+    .card {
+        padding: var(--spacing-md);
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn var(--duration-slow) var(--ease-smooth);
+}
+
+.animate-slide-left {
+    animation: slideInLeft var(--duration-slow) var(--ease-smooth);
+}
+
+.animate-slide-right {
+    animation: slideInRight var(--duration-slow) var(--ease-smooth);
+}
+
+.animate-scale {
+    animation: scaleIn var(--duration-slow) var(--ease-smooth);
+}
+
