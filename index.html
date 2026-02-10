@@ -146,36 +146,38 @@
             box-shadow: var(--shadow-glow);
         }
 
-        /* Navigation */
+        /* ========== Navigation ========== */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             width: 100%;
-            background: rgba(13, 17, 23, 0.88);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            box-shadow: var(--shadow-sm), 0 0 0 1px rgba(59, 130, 246, 0.06);
-            z-index: 1000;
-            padding: var(--space-4) 0;
-            padding-top: max(var(--space-4), env(safe-area-inset-top));
-            transition: background var(--duration-slow) var(--ease), box-shadow var(--duration-slow) var(--ease);
+            min-height: 56px;
+            background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0;
+            padding-top: env(safe-area-inset-top);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
         }
 
         nav.scrolled {
-            background: rgba(13, 17, 23, 0.96);
-            box-shadow: var(--shadow), 0 0 0 1px rgba(59, 130, 246, 0.08);
+            background: rgba(13, 17, 23, 0.97);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
             max-width: 1200px;
+            width: 100%;
+            min-width: 0;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
+            min-height: 56px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
         .nav-logo {
@@ -183,39 +185,16 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: inherit;
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            min-height: 44px;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            min-height: 40px;
             border-radius: var(--radius);
             overflow: hidden;
             flex-shrink: 0;
             position: relative;
-            transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
-        }
-
-        /* Blurred background behind nav logo */
-        .nav-logo::before {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            background: rgba(13, 17, 23, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: var(--radius-lg);
-            z-index: 0;
-            border: 1px solid rgba(59, 130, 246, 0.12);
-        }
-
-        .nav-logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
-        }
-
-        .nav-logo:focus-visible {
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
         }
 
         .nav-logo img {
@@ -226,15 +205,28 @@
             display: block;
             position: relative;
             z-index: 1;
-            transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+        }
+
+        .nav-logo:hover {
+            border-color: var(--accent-color);
+        }
+
+        .nav-logo:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            align-items: center;
+            gap: 1.75rem;
             list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-close-wrap {
+            display: none;
         }
 
         .nav-links a {
@@ -242,9 +234,9 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: color var(--duration) var(--ease), transform var(--duration) var(--ease);
+            padding: 0.5rem 0;
             position: relative;
-            padding: var(--space-2) 0;
+            transition: color var(--duration) var(--ease);
         }
 
         .nav-links a::after {
@@ -256,7 +248,11 @@
             height: 2px;
             background: var(--accent-color);
             transition: width var(--duration) var(--ease);
-            border-radius: 2px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--accent-color);
         }
 
         .nav-links a:hover::after,
@@ -264,67 +260,22 @@
             width: 100%;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .nav-links a:focus-visible {
-            outline: none;
-            color: var(--accent-color);
-        }
-
-        .toggle-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: var(--space-3);
-            border-radius: 50%;
-            transition: background var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .toggle-btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            color: var(--text-color);
-            transform: scale(1.05);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .toggle-btn:active {
-            transform: scale(0.98);
-        }
-
-        .toggle-btn:focus-visible {
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
-        }
-
-        /* Hamburger - hidden on desktop */
         .nav-toggle {
             display: none;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
             gap: 5px;
             width: 44px;
             height: 44px;
             min-width: 44px;
             min-height: 44px;
-            padding: 10px;
+            padding: 0;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             cursor: pointer;
-            transition: background var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration) var(--ease);
-            z-index: 1002;
+            flex-shrink: 0;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -333,17 +284,22 @@
             border-color: var(--accent-color);
         }
 
-        .nav-toggle:active {
-            transform: scale(0.98);
-        }
-
         .nav-toggle:focus-visible {
             outline: 2px solid var(--accent-color);
             outline-offset: 2px;
         }
 
+        .nav-toggle .hamburger-line {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-color);
+            border-radius: 1px;
+            transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease);
+        }
+
         .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+            transform: translateY(6px) rotate(45deg);
         }
 
         .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
@@ -351,16 +307,7 @@
         }
 
         .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .hamburger-line {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--text-color);
-            border-radius: 2px;
-            transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease);
+            transform: translateY(-6px) rotate(-45deg);
         }
 
         /* Hero Section */
@@ -2397,81 +2344,6 @@
             }
         }
 
-        /* Mouse Cursor Effects */
-        body {
-            cursor: none;
-        }
-
-        a,
-        button,
-        .btn,
-        .project-card,
-        .skill-card,
-        input,
-        textarea {
-            cursor: none !important;
-        }
-
-        .cursor-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: screen;
-            transition: transform 0.15s ease, opacity 0.3s ease;
-            box-shadow:
-                0 0 20px rgba(59, 130, 246, 0.8),
-                0 0 40px rgba(59, 130, 246, 0.5),
-                0 0 60px rgba(59, 130, 246, 0.3);
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(59, 130, 246, 0.5);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.2s ease;
-            background: rgba(59, 130, 246, 0.05);
-            backdrop-filter: blur(2px);
-        }
-
-        .cursor-dot.expand,
-        .cursor-outline.expand {
-            transform: scale(2);
-        }
-
-        /* Mouse trail effect */
-        .mouse-trail {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9997;
-            opacity: 0;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
-            animation: trail-fade 0.8s ease-out forwards;
-        }
-
-        @keyframes trail-fade {
-            0% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-
-            100% {
-                opacity: 0;
-                transform: scale(0.3);
-            }
-        }
-
         /* Interactive glow that follows mouse */
         .mouse-glow {
             position: absolute;
@@ -2526,68 +2398,125 @@
                 display: flex;
             }
 
+            nav.nav-menu-open {
+                z-index: 9999;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+            }
+
+            /* Mobile: hide links in bar; they appear in overlay */
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: 0;
-                width: min(100%, 320px);
-                height: 100vh;
+                width: 280px;
+                max-width: 90vw;
+                height: 100%;
                 height: 100dvh;
-                background: rgba(13, 17, 23, 0.98);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 0;
-                padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
                 margin: 0;
+                padding: 0;
+                padding-top: max(4rem, calc(56px + env(safe-area-inset-top)));
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                background: var(--card-bg);
+                border-left: 1px solid var(--border-color);
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                gap: 0;
                 list-style: none;
+                box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+                z-index: 1001;
                 transform: translateX(100%);
                 visibility: hidden;
-                opacity: 0;
-                transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
-                z-index: 1001;
-                box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
-                border-left: 1px solid var(--border-color);
+                transition: transform 0.25s ease-out, visibility 0.25s ease-out;
+                overflow-y: auto;
             }
 
             .nav-links.mobile-open {
                 transform: translateX(0);
                 visibility: visible;
-                opacity: 1;
+            }
+
+            .nav-close-wrap {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: flex;
+                justify-content: flex-end;
+                padding: max(0.75rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) 0.5rem 0;
+                margin: 0;
+                border-bottom: none;
+                width: auto;
+            }
+
+            .nav-close-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
+                padding: 0;
+                background: transparent;
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius);
+                color: var(--text-primary);
+                cursor: pointer;
+                transition: background 0.2s ease, color 0.2s ease;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .nav-close-btn:hover,
+            .nav-close-btn:focus-visible {
+                background: var(--bg-tertiary);
+                color: var(--accent);
+            }
+
+            .nav-close-btn .fa-times {
+                font-size: 1.25rem;
             }
 
             .nav-links li {
                 width: 100%;
-                text-align: center;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
             }
 
             .nav-links a {
-                display: block;
-                padding: 1rem 1.5rem;
-                font-size: 1.1rem;
-                min-height: 48px;
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                padding: 1rem 0;
+                font-size: 1.05rem;
+                min-height: 48px;
             }
 
-            .nav-container {
-                padding: 0.75rem 1rem;
-                padding-left: max(1rem, env(safe-area-inset-left));
-                padding-right: max(1rem, env(safe-area-inset-right));
-            }
-
-            /* On mobile: no backdrop blur behind logo so the image stays sharp */
-            .nav-logo::before {
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-                background: rgba(22, 27, 34, 0.95);
+            .nav-links a::after {
+                display: none;
             }
 
             body.menu-open {
                 overflow: hidden;
+            }
+
+            .nav-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            body.menu-open .nav-overlay {
+                display: block;
             }
 
             .hero {
@@ -2838,6 +2767,26 @@
         }
 
         @media (max-width: 480px) {
+            .nav-container {
+                padding-left: max(0.5rem, env(safe-area-inset-left));
+                padding-right: max(0.5rem, env(safe-area-inset-right));
+            }
+
+            .nav-logo {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+            }
+
+            .nav-toggle {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+                padding: 8px;
+            }
+
             .hero {
                 padding: 90px 1rem 50px;
             }
@@ -3024,6 +2973,11 @@
                 <span class="hamburger-line"></span>
             </button>
             <ul class="nav-links" id="navLinks">
+                <li class="nav-close-wrap">
+                    <button type="button" class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </li>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -3032,11 +2986,9 @@
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="toggle-btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-                <i class="fas fa-moon" id="theme-icon"></i>
-            </button>
         </div>
     </nav>
+    <div class="nav-overlay" id="navOverlay" aria-hidden="true" role="presentation"></div>
 
     <main id="main-content">
         <!-- Hero Section -->
@@ -3397,27 +3349,41 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        (function () {
+        // Mobile menu toggle – run when DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
             var navToggle = document.getElementById('navToggle');
             var navLinks = document.getElementById('navLinks');
+            var navOverlay = document.getElementById('navOverlay');
             if (!navToggle || !navLinks) return;
+
+            var nav = document.querySelector('nav');
             function openMenu() {
                 navLinks.classList.add('mobile-open');
+                if (nav) nav.classList.add('nav-menu-open');
                 navToggle.setAttribute('aria-expanded', 'true');
                 navToggle.setAttribute('aria-label', 'Close menu');
                 document.body.classList.add('menu-open');
+                if (navOverlay) navOverlay.setAttribute('aria-hidden', 'false');
             }
             function closeMenu() {
                 navLinks.classList.remove('mobile-open');
+                if (nav) nav.classList.remove('nav-menu-open');
                 navToggle.setAttribute('aria-expanded', 'false');
                 navToggle.setAttribute('aria-label', 'Open menu');
                 document.body.classList.remove('menu-open');
+                if (navOverlay) navOverlay.setAttribute('aria-hidden', 'true');
             }
-            navToggle.addEventListener('click', function () {
+
+            function toggleMenu() {
                 if (navLinks.classList.contains('mobile-open')) closeMenu();
                 else openMenu();
-            });
+            }
+
+            navToggle.addEventListener('click', toggleMenu);
+            if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+            var navCloseBtn = document.getElementById('navCloseBtn');
+            if (navCloseBtn) navCloseBtn.addEventListener('click', closeMenu);
+
             navLinks.querySelectorAll('a').forEach(function (a) {
                 a.addEventListener('click', closeMenu);
             });
@@ -3427,7 +3393,7 @@
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) closeMenu();
             });
-        })();
+        });
 
         // Skills Data with Icons
         const skillsData = [
@@ -3889,15 +3855,6 @@
             }, 5000); // Change slide every 5 seconds
         }
 
-        // Dark Mode Toggle
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const icon = document.getElementById('theme-icon');
-            icon.classList.toggle('fa-sun');
-            icon.classList.toggle('fa-moon');
-            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-        }
-
         // Contact Form Handler
         function handleSubmit(event) {
             event.preventDefault();
@@ -3995,15 +3952,8 @@
 
         // Initialize
         window.addEventListener('DOMContentLoaded', () => {
-            // Set dark mode as default
+            // Dark mode is the default (no toggle button)
             document.body.classList.add('dark-mode');
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.body.classList.remove('dark-mode');
-                document.getElementById('theme-icon')?.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                document.getElementById('theme-icon')?.classList.replace('fa-moon', 'fa-sun');
-            }
 
             // Nav scroll detection
             const nav = document.querySelector('nav');
@@ -4097,76 +4047,14 @@
         // MOUSE EFFECTS FOR HERO SECTION
         // ============================================
 
-        // Create custom cursor elements
-        const cursorDot = document.createElement('div');
-        cursorDot.className = 'cursor-dot';
-        const cursorOutline = document.createElement('div');
-        cursorOutline.className = 'cursor-outline';
-        document.body.appendChild(cursorDot);
-        document.body.appendChild(cursorOutline);
-
-        // Mouse position tracking
         let mouseX = 0;
         let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-        let outlineX = 0;
-        let outlineY = 0;
 
-        // Update mouse position
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-
-            // Create trail effect in hero section
-            const heroSection = document.querySelector('.hero');
-            if (heroSection) {
-                const rect = heroSection.getBoundingClientRect();
-                if (mouseY >= rect.top && mouseY <= rect.bottom) {
-                    createTrail(mouseX, mouseY);
-                }
-            }
-
-            // Update mouse glow position
             updateMouseGlow(e);
         });
-
-        // Smooth cursor animation
-        function animateCursor() {
-            // Smooth follow for dot (faster)
-            cursorX += (mouseX - cursorX) * 0.25;
-            cursorY += (mouseY - cursorY) * 0.25;
-            cursorDot.style.left = cursorX + 'px';
-            cursorDot.style.top = cursorY + 'px';
-
-            // Smooth follow for outline (slower)
-            outlineX += (mouseX - outlineX) * 0.15;
-            outlineY += (mouseY - outlineY) * 0.15;
-            cursorOutline.style.left = outlineX + 'px';
-            cursorOutline.style.top = outlineY + 'px';
-
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Mouse trail effect
-        let lastTrailTime = 0;
-        function createTrail(x, y) {
-            const now = Date.now();
-            if (now - lastTrailTime < 30) return; // Throttle trail creation
-            lastTrailTime = now;
-
-            const trail = document.createElement('div');
-            trail.className = 'mouse-trail';
-            trail.style.left = x + 'px';
-            trail.style.top = y + 'px';
-            document.body.appendChild(trail);
-
-            // Remove trail after animation
-            setTimeout(() => {
-                trail.remove();
-            }, 800);
-        }
 
         // Mouse glow effect in hero
         function updateMouseGlow(e) {
@@ -4205,33 +4093,6 @@
                 ripple.remove();
             }, 1000);
         });
-
-        // Expand cursor on hover over interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .btn, .project-card, .skill-card');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorDot.classList.add('expand');
-                cursorOutline.classList.add('expand');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorDot.classList.remove('expand');
-                cursorOutline.classList.remove('expand');
-            });
-        });
-
-        // Hide custom cursor when mouse leaves window
-        document.addEventListener('mouseleave', () => {
-            cursorDot.style.opacity = '0';
-            cursorOutline.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursorDot.style.opacity = '1';
-            cursorOutline.style.opacity = '1';
-        });
-
-        // Custom cursor is active throughout the page
-        document.body.style.cursor = 'none';
 
         // Particle interaction with mouse (magnetic effect)
         let particleInteractionFrame;
