@@ -146,6 +146,51 @@
             box-shadow: var(--shadow-glow);
         }
 
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: max(1.5rem, env(safe-area-inset-bottom));
+            right: max(1.5rem, env(safe-area-inset-right));
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-color);
+            color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease, background var(--duration) var(--ease);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            background: var(--accent-hover);
+        }
+
+        .scroll-to-top:focus-visible {
+            outline: 2px solid var(--accent-hover);
+            outline-offset: 2px;
+        }
+
+        .scroll-to-top i {
+            font-size: 1.2rem;
+        }
+
         /* ========== Navigation ========== */
         nav {
             position: fixed;
@@ -3438,6 +3483,10 @@
         <p>&copy; 2024 Malik Umair. All rights reserved.</p>
     </footer>
 
+    <button type="button" class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top" title="Scroll to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
     <script>
         // Mobile menu toggle – run when DOM is ready
         document.addEventListener('DOMContentLoaded', function () {
@@ -3483,6 +3532,28 @@
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) closeMenu();
             });
+        });
+
+        // Scroll to top button
+        document.addEventListener('DOMContentLoaded', function () {
+            var scrollBtn = document.getElementById('scrollToTop');
+            if (!scrollBtn) return;
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function toggleVisibility() {
+                if (window.scrollY > 400) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+            }
+
+            scrollBtn.addEventListener('click', scrollToTop);
+            window.addEventListener('scroll', toggleVisibility, { passive: true });
+            toggleVisibility();
         });
 
         // Skills Data with Icons
