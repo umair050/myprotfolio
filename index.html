@@ -593,10 +593,33 @@
             z-index: 10;
             max-width: 900px;
             padding: 2rem;
-            animation: fadeInUp 1s ease;
         }
 
-        /* Hero stats/badges */
+        /* Hero content (above stats) fades in first */
+        .hero-content .profile-pic-container,
+        .hero-content h1,
+        .hero-content .title,
+        .hero-content .tagline,
+        .hero-content .cta-buttons {
+            animation: fadeInUp 0.7s ease forwards;
+        }
+
+        .hero-content .title {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .hero-content .tagline {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .hero-content .cta-buttons {
+            animation-delay: 0.25s;
+            opacity: 0;
+        }
+
+        /* Hero stats fade in after main content so they stay clearly visible */
         .hero-stats {
             display: flex;
             gap: 1.5rem;
@@ -605,6 +628,8 @@
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(59, 130, 246, 0.2);
+            animation: fadeInUp 0.6s ease 0.5s forwards;
+            opacity: 0;
         }
 
         .hero-stat {
@@ -2432,11 +2457,6 @@
             }
         }
 
-        /* Parallax Effect */
-        .parallax {
-            transition: transform 0.3s ease-out;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-toggle {
@@ -4062,25 +4082,12 @@
             scrollProgress.style.width = scrolled + '%';
         }
 
-        // Parallax scroll effect
-        let lastScrollTop = 0;
-        function handleParallax() {
+        // Scroll effects (progress bar + nav shadow)
+        function handleScroll() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const hero = document.querySelector('.hero');
 
-            // Update scroll progress
             updateScrollProgress();
 
-            if (hero) {
-                const heroContent = hero.querySelector('.hero-content');
-                if (heroContent) {
-                    const scrolled = scrollTop * 0.5;
-                    heroContent.style.transform = `translateY(${scrolled}px)`;
-                    heroContent.style.opacity = Math.max(0, 1 - scrollTop / 500);
-                }
-            }
-
-            // Navbar background on scroll
             const nav = document.querySelector('nav');
             if (nav) {
                 if (scrollTop > 100) {
@@ -4089,8 +4096,6 @@
                     nav.style.boxShadow = 'var(--shadow)';
                 }
             }
-
-            lastScrollTop = scrollTop;
         }
 
         // Smooth scroll with offset for fixed nav
@@ -4187,11 +4192,8 @@
                 });
             });
 
-            // Parallax and scroll effects
-            window.addEventListener('scroll', handleParallax, { passive: true });
-
-            // Initial call
-            handleParallax();
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            handleScroll();
         });
 
         // Re-initialize animations when content is dynamically added
