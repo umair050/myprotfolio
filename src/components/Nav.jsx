@@ -57,13 +57,14 @@ export default function Nav() {
           <a
             href="#home"
             onClick={(e) => smoothScroll(e, '#home')}
-            className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 rounded-lg overflow-hidden flex-shrink-0 bg-card-bg border border-border isolation-isolate"
+            className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 rounded-lg overflow-hidden flex-shrink-0 bg-card-bg border border-border shrink-0"
             aria-label="Home"
           >
             <img
               src="/Malik-Umair.png"
               alt="Malik Umair"
-              className="w-20 h-20 min-w-20 min-h-20 object-cover object-top scale-50 origin-center"
+              className="w-full h-full object-cover object-top"
+              style={{ imageRendering: '-webkit-optimize-contrast' }}
             />
           </a>
 
